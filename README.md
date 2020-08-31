@@ -35,3 +35,18 @@ C:\dev\projects\> git clone https://github.com/hopelife/mstg.git
 -
 
 
+# virtual environment for python 32bit
+```
+C:\dev\projects>python --version
+Python 3.7.0
+C:\dev\projects>set CONDA_FORCE_32BIT=1
+C:\dev\projects>conda create -n py37_32 python=3.7.0 anaconda
+C:\dev\projects>conda activate py37_32
+
+
+C:\dev\projects> set CONDA_FORCE_32BIT=1 && conda create --name ml32 python=3.7 anaconda
+C:\dev\projects>conda activate ml32
+```
+
+
+# install python module

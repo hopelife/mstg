@@ -14,7 +14,7 @@ class XASessionEventHandler:
 instXASession = win32com.client.DispatchWithEvents("XA_Session.XASession", XASessionEventHandler)
 
 
-f = open("D:\moon\dev\projects\_accounts\ebest.txt", "rt")
+f = open("../conf/ebest.txt", "rt")
 lines = f.readlines()
 print(lines)
 
@@ -24,8 +24,17 @@ cert_passwd = lines[2].rstrip('\n')
 
 print(id)
 
-# instXASession.ConnectServer("hts.ebestsec.co.kr", 20001)
-# instXASession.Login(id, passwd, cert_passwd, 0, 0)
 
-# while XASessionEventHandler.login_state == 0:
-#     pythoncom.PumpWaitingMessages()
+instXASession.ConnectServer("hts.ebestsec.co.kr", 20001)
+instXASession.Login(id, passwd, cert_passwd, 0, 0)
+
+while XASessionEventHandler.login_state == 0:
+    pythoncom.PumpWaitingMessages()
+
+num_account = instXASession.GetAccountListCount()
+
+print(num_account)
+
+for i in range(num_account):
+    account = instXASession.GetAccountList(i)
+    print(account)
