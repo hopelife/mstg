@@ -21,15 +21,6 @@ def set_contact():
     return contact
 
 
-def print_menu():
-    print("1. 연락처 입력")
-    print("2. 연락처 출력")
-    print("3. 연락처 삭제")
-    print("4. 종료")
-    menu = input("메뉴선택: ")
-    return int(menu)
-
-
 def print_contact(contact_list):
     for contact in contact_list:
         contact.print_info()
@@ -39,6 +30,22 @@ def delete_contact(contact_list, name):
     for i, contact in enumerate(contact_list):
         if contact.name == name:
             del contact_list[i]
+
+
+def load_contact(contact_list):
+    f = open("contact_db.txt", "rt")
+    lines = f.readlines()
+    num = len(lines) / 4
+    num = int(num)
+
+    for i in range(num):
+        name = lines[4*i].rstrip('\n')
+        phone = lines[4*i+1].rstrip('\n')
+        email = lines[4*i+2].rstrip('\n')
+        addr = lines[4*i+3].rstrip('\n')
+        contact = Contact(name, phone, email, addr)
+        contact_list.append(contact)
+    f.close()
 
 
 def store_contact(contact_list):
@@ -51,8 +58,18 @@ def store_contact(contact_list):
     f.close()
 
 
+def print_menu():
+    print("1. 연락처 입력")
+    print("2. 연락처 출력")
+    print("3. 연락처 삭제")
+    print("4. 종료")
+    menu = input("메뉴선택: ")
+    return int(menu)
+
+
 def run():
     contact_list = []
+    load_contact(contact_list)
     while 1:
         menu = print_menu()
         if menu == 1:
