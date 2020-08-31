@@ -30,6 +30,11 @@ def print_menu():
     return int(menu)
 
 
+def print_contact(contact_list):
+    for contact in contact_list:
+        contact.print_info()
+
+
 def run():
     contact_list = []
     while 1:
@@ -37,6 +42,8 @@ def run():
         if menu == 1:
             contact = set_contact()
             contact_list.append(contact)
+        elif menu == 2:
+            print_contact(contact_list)
         elif menu == 4:
             break
 
