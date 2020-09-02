@@ -50,3 +50,6 @@ C:\dev\projects>conda activate ml32
 
 
 # install python module
+
+
+
